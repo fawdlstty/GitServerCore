@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Version>0.0.1</Version>
+    <Authors>Fawdlstty</Authors>
+    <PackageProjectUrl>https://github.com/fawdlstty/GitServerCore</PackageProjectUrl>
+    <Description>Create a git server by ASP.Net Core</Description>
+    <Copyright>MIT License</Copyright>
+    <RepositoryUrl>https://github.com/fawdlstty/GitServerCore.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>git</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>
