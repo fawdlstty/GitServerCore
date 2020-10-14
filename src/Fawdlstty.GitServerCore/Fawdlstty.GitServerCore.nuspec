@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>GitServerCore</id>
+    <version>0.0.1</version>
+    <title>Fawdlstty.GitServerCore</title>
+    <authors>fawdlstty</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/fawdlstty/GitServerCore</projectUrl>
+    <description>Git server for .NET</description>
+    <releaseNotes>Git server for .NET</releaseNotes>
+    <copyright>fawdlstty © 2020</copyright>
+    <tags>git server</tags>
+  </metadata>
+</package>

@@ -19,6 +19,7 @@ namespace ExampleWeb.Controllers {
 		// http://127.0.0.1:5000/MyGitCommand/Create?path=aaa/bbb
 		[HttpGet]
 		public string Create (string path) {
+			_logger.LogInformation ($"Create git bare repo by path[{path}]");
 			if (GitServerAPI.CreateRepo (path)) {
 				return "success";
 			} else {

@@ -4,13 +4,86 @@ English | [简体中文](./README-zh.md)
 
 Create a git server by ASP.Net Core
 
-## Test Steps
+## Manuals
 
-1. install git <https://git-scm.com/>, make sure the 'git' command is available.
-2. run ExampleWeb project from GitServer.sln
-3. Access in a browser <http://127.0.0.1:5000/MyGitCommand/Create?path=aaa/bbb>, to ensure that the returned content is `success`
-4. executive command `git clone http://127.0.0.1:5000/aaa/bbb.git`
-5. Enter the account 'hello', password 'world'
+Step 1: install git <https://git-scm.com/>, ensure that the 'git' command is available, including both the project deployment environment and the client test environment  
+Step 2: Create a new WebAPI project and reference the latest version of 'Fawdlstty.GitServerCore' above 'nuget'  
+Step 3: 'Configure' add the following code:
+
+```csharp
+public void ConfigureServices (IServiceCollection services) {
+    // ...
+    services.AddGitServerCore (_cfg => {
+        // URL regex（eg: /username/reponame.git）
+        _cfg.GitUrlRegex = "^/(\\S*)\\.git$";
+
+        // How is the URL address converted to a warehouse relative path
+        // For example, the URL of the regular match above will be converted to username/reponame
+        _cfg.GitUrlSimplize = _url => _url [1..^4];
+
+        // The Git bare repository path
+        _cfg.GitRepoBareDir = "/data/repo_bare";
+
+        // The Git repo extract path
+        _cfg.GitRepoExtractDir = "/data/repo_extract";
+
+        // Log on to check
+        _cfg.CheckAllowAsync = async (_path, _oper, _username, _password) => {
+            if (string.IsNullOrEmpty (_username)) {
+                // If the user name is empty, it is mandatory to enter the user name
+                return GitOperReturnType.NeedAuth;
+            } else if (_username == "hello" && _password == "world") {
+                // The username and password are verified
+                return GitOperReturnType.Allow;
+            } else {
+                // Denied this visit
+                return GitOperReturnType.Block;
+            }
+        };
+
+        // Operation completion notice
+        _cfg.HasBeenOperationAsync = async (_path, _oper, _username) => await Task.Yield ();
+    });
+    // ...
+}
+
+public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
+    // ...
+    app.UseGitServerCore ();
+    // ...
+}
+```
+
+Step 4: Create new controller, sample code:
+
+```csharp
+[ApiController]
+[Route ("[controller]/[action]")]
+public class MyGitCommandController: ControllerBase {
+    // http://127.0.0.1:5000/MyGitCommand/Create?path=aaa/bbb
+    [HttpGet]
+    public string Create (string path) {
+        if (GitServerAPI.CreateRepo (path)) {
+            return "success";
+        } else {
+            return "failure";
+        }
+    }
+
+    [HttpGet]
+    public async Task<string> Extract (string path) {
+        if (await GitServerAPI.ExtractFilesAsync (path)) {
+            return "success";
+        } else {
+            return "failure";
+        }
+    }
+}
+```
+
+Step 5: browser to access <http://127.0.0.1:5000/MyGitCommand/Create?path=aaa/bbb>, make sure the return is' success '  
+第六步：执行命令 `git clone http://127.0.0.1:5000/aaa/bbb.git`，提示输入用户名密码，输入账号 `hello`，密码 `world`，即成功克隆
+Step 6: execute the command `git clone http://127.0.0.1:5000/aaa/bbb.git`, prompt for user name password, enter account `hello`, password `world`, namely successfully cloned
 
 ## Functions
 
