@@ -82,7 +82,6 @@ public class MyGitCommandController: ControllerBase {
 ```
 
 Step 5: browser to access <http://127.0.0.1:5000/MyGitCommand/Create?path=aaa/bbb>, make sure the return is' success '  
-第六步：执行命令 `git clone http://127.0.0.1:5000/aaa/bbb.git`，提示输入用户名密码，输入账号 `hello`，密码 `world`，即成功克隆
 Step 6: execute the command `git clone http://127.0.0.1:5000/aaa/bbb.git`, prompt for user name password, enter account `hello`, password `world`, namely successfully cloned
 
 ## Functions
