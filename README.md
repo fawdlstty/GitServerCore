@@ -6,9 +6,9 @@ Create a git server by ASP.Net Core
 
 ## Manuals
 
-Step 1: install git <https://git-scm.com/>, ensure that the 'git' command is available, including both the project deployment environment and the client test environment  
-Step 2: Create a new WebAPI project and reference the latest version of 'Fawdlstty.GitServerCore' above 'nuget'  
-Step 3: 'Configure' add the following code:
+Step 1: install git <https://git-scm.com/>, ensure that the `git` command is available, including both the project deployment environment and the client test environment  
+Step 2: Create a new WebAPI project and reference the latest version of `Fawdlstty.GitServerCore` above `nuget`  
+Step 3: `Configure` add the following code:
 
 ```csharp
 public void ConfigureServices (IServiceCollection services) {
