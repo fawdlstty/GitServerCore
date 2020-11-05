@@ -1,4 +1,7 @@
-# GitServer
+# GitServerCore
+
+![Nuget](https://buildstats.info/nuget/Fawdlstty.GitServerCore)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/fawdlstty/GitServerCore/master/LICENSE)
 
 English | [简体中文](./README-zh.md)
 
